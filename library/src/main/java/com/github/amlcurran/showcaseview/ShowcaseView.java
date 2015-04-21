@@ -75,6 +75,11 @@ public class ShowcaseView extends RelativeLayout
     private long fadeOutMillis;
     private boolean isShowing;
 
+    // Content title position
+    private int titleX = 0;
+    private int titleY = 0;
+    private boolean hasManualTitlePosition = false;
+
     protected ShowcaseView(Context context, boolean newStyle) {
         this(context, null, R.styleable.CustomTheme_showcaseViewStyle, newStyle);
     }
@@ -253,6 +258,9 @@ public class ShowcaseView extends RelativeLayout
         boolean recalculateText = recalculatedCling || hasAlteredText;
         if (recalculateText) {
             textDrawer.calculateTextPosition(getMeasuredWidth(), getMeasuredHeight(), this, shouldCentreText);
+            if(hasManualTitlePosition) {
+              textDrawer.setTextPositionManually(titleX, titleY);
+            }            
         }
         hasAlteredText = false;
     }
@@ -366,6 +374,12 @@ public class ShowcaseView extends RelativeLayout
         textDrawer.setContentText(text);
     }
 
+    public void setManualTitlePosition(int x, int y) {
+      hasManualTitlePosition = true;
+      titleX = x;
+      titleY = y;
+    }
+
     private void setScaleMultiplier(float scaleMultiplier) {
         this.scaleMultiplier = scaleMultiplier;
     }
@@ -435,6 +449,14 @@ public class ShowcaseView extends RelativeLayout
         public Builder setContentText(CharSequence text) {
             showcaseView.setContentText(text);
             return this;
+        }
+
+        /**
+         * Override the content title position
+         */
+        public Builder setManualTitlePosition(int x, int y) {
+          showcaseView.setManualTitlePosition(x, y);
+          return this;
         }
 
         /**

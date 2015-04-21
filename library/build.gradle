@@ -20,12 +20,12 @@ buildscript {
     }
 
     dependencies {
-        classpath 'com.android.tools.build:gradle:1.0.0'
+        classpath 'com.android.tools.build:gradle:1.1.0'
     }
 }
 
 apply plugin: 'com.android.library'
-apply plugin: 'maven'
+//apply plugin: 'maven'
 
 dependencies {
     repositories {
@@ -33,6 +33,18 @@ dependencies {
     }
 }
 
+android {
+    compileSdkVersion 22
+    buildToolsVersion '21.1.2'
+
+    defaultConfig {
+        versionName '5.1.1-SNAPSHOT'
+        versionCode 50102
+        targetSdkVersion 22
+        minSdkVersion 9
+    }
+}
+/*
 android {
     compileSdkVersion Integer.parseInt(COMPILE_SDK)
     buildToolsVersion BUILD_TOOLS_VERSION
@@ -44,5 +56,5 @@ android {
         minSdkVersion Integer.parseInt(MIN_SDK_LIBRARY)
     }
 }
-
-apply from: 'gradle-mvn-push.gradle'
+*/
+//apply from: 'gradle-mvn-push.gradle'

@@ -153,9 +153,10 @@ class TextDrawer {
     		mBestTextPosition[2] = canvasW - 2 * padding;
     		break;
     	case 2:
-    		mBestTextPosition[0] = showcase.right + padding;
-    		mBestTextPosition[1] = padding;
-    		mBestTextPosition[2] = (canvasW - showcase.right) - 2 * padding;
+            mBestTextPosition[0] = showcase.right + padding;
+            mBestTextPosition[1] = padding;
+            mBestTextPosition[2] = canvasW - 2 * padding; // TODO: Remove this temporary fix
+//          mBestTextPosition[2] = (canvasW - showcase.right) - 2 * padding; // Original
     		break;
     	case 3:
     		mBestTextPosition[0] = padding;
@@ -214,4 +215,9 @@ class TextDrawer {
     public boolean shouldDrawText() {
         return !TextUtils.isEmpty(mTitle) || !TextUtils.isEmpty(mDetails);
     }
+
+    public void setTextPositionManually(int x, int y) {
+        mBestTextPosition[0] = x;
+        mBestTextPosition[1] = y;
+    }    
 }
